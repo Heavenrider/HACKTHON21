@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RightPath - India's #1 Career Guidance Platform</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Small Beautiful Theme Toggle -->
+  <div class="theme-toggle">
+    <input type="checkbox" id="themeSwitch">
+    <label for="themeSwitch" class="toggle-label">
+      <i class="fas fa-sun sun"></i>
+      <i class="fas fa-moon moon"></i>
+      <div class="toggle-ball"></div>
+    </label>
+  </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919100607138?text=Hello%20RightPath!%20I%20want%20career%20guidance" 
+     class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <!-- Header (After Login) -->
+  <header class="main-header" id="mainHeader" style="display:none;">
+    <div class="container">
+      <h2 class="logo">RightPath</h2>
+      <div class="header-right">
+        <button class="btn-outline" onclick="openBooking()">Book Session</button>
+        <button class="btn-danger" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- AUTH SECTION -->
+  <section id="authSection" class="auth-section">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>RightPath</h1>
+          <p>India's Most Trusted Career Guidance Platform</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginBox" class="auth-form active">
+          <h2>Welcome Back!</h2>
+          <input type="text" id="loginUsername" placeholder="Username or Email" required>
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <button class="btn-primary" onclick="login()">Login Securely</button>
+          <p class="error-msg" id="loginError"></p>
+          <div class="auth-switch">
+            New here? <span onclick="showSignup()" class="link-text">Create Free Account</span>
+          </div>
+          <div class="admin-link">
+            <a href="#" onclick="adminLogin()">Admin Login →</a>
+          </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupBox" class="auth-form">
+          <h2>Create Your Account</h2>
+          <input type="text" id="signupName" placeholder="Full Name" required>
+          <input type="email" id="signupEmail" placeholder="Email Address" required>
+          <input type="text" id="signupUsername" placeholder="Choose Username" required>
+          <input type="password" id="signupPassword" placeholder="Create Strong Password" required>
+          <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+          
+          <div id="passwordStrength"></div>
+          <p class="success-msg" id="passMatch" style="display:none;">Passwords match!</p>
+          <p class="error-msg" id="passError" style="display:none;">Passwords do not match!</p>
+
+          <button class="btn-primary" id="signupBtn" onclick="signup()" disabled>Create Account</button>
+          <p class="success-msg" id="signupSuccess"></p>
+          <p class="error-msg" id="signupError"></p>
+
+          <div class="auth-switch">
+            Already have account? <span onclick="showLogin()" class="link-text">Login Here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER DASHBOARD -->
+  <section id="dashboard" class="dashboard" style="display:none;">
+    <div class="hero">
+      <h1>Discover Your Dream Career</h1>
+      <p>Explore India's top 12 high-demand careers with complete guidance</p>
+    </div>
+    <div class="container">
+      <div class="career-grid">
+        <div class="career-card" onclick="openCareer('software')">
+          <img src="https://images.unsplash.com/photo-1517180107641-dc70e7ea90b8?w=800&q=80" alt="Software">
+          <div class="card-info">
+            <h3>Software Engineering</h3>
+            <p>Build apps & AI</p>
+            <span class="salary">₹8–40 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('medicine')">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="Medicine">
+          <div class="card-info">
+            <h3>Medicine & Healthcare</h3>
+            <p>Become a Doctor</p>
+            <span class="salary">₹12–50 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('ca')">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="CA">
+          <div class="card-info">
+            <h3>Chartered Accountancy</h3>
+            <p>Finance Expert</p>
+            <span class="salary">₹8–30 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('law')">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Law">
+          <div class="card-info">
+            <h3>Law Studies</h3>
+            <p>Fight for Justice</p>
+            <span class="salary">₹8–40 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('design')">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138ed1cb?w=800&q=80" alt="Design">
+          <div class="card-info">
+            <h3>UI/UX Design</h3>
+            <p>Create Beautiful Apps</p>
+            <span class="salary">₹6–25 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('data')">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Data">
+          <div class="card-info">
+            <h3>Data Science & AI</h3>
+            <p>Future of Tech</p>
+            <span class="salary">₹12–50 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('ias')">
+          <img src="https://images.unsplash.com/photo-1589820288219-0b3d26e03fc5?w=800&q=80" alt="IAS">
+          <div class="card-info">
+            <h3>Civil Services (IAS)</h3>
+            <p>Serve the Nation</p>
+            <span class="salary">₹8–25 LPA + Power</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('commerce')">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Commerce">
+          <div class="card-info">
+            <h3>B.Com + MBA Finance</h3>
+            <p>Investment Banking</p>
+            <span class="salary">₹10-40 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('teaching')">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" alt="Teaching">
+          <div class="card-info">
+            <h3>Teaching & Education</h3>
+            <p>Shape Young Minds</p>
+            <span class="salary">₹5–20 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('defence')">
+          <img src="https://images.unsplash.com/photo-1567454483476-3c33b2c2d1e7?w=800&q=80" alt="Defence">
+          <div class="card-info">
+            <h3>Defence Forces</h3>
+            <p>Army/Navy/Air Force</p>
+            <span class="salary">₹10–25 LPA + Perks</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('fashion')">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80" alt="Fashion">
+          <div class="card-info">
+            <h3>Fashion Design</h3>
+            <p>Style the World</p>
+            <span class="salary">₹5–25 LPA</span>
+          </div>
+        </div>
+        <div class="career-card" onclick="openCareer('aviation')">
+          <img src="https://images.unsplash.com/photo-1506947411487-a5673821d968?w=800&q=80" alt="Pilot">
+          <div class="card-info">
+            <h3>Commercial Pilot</h3>
+            <p>Fly High</p>
+            <span class="salary">₹20L–2Cr/year</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN PANEL -->
+  <section id="adminPanel" class="admin-panel" style="display:none;">
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+      <div class="stats">
+        <div class="stat-box">
+          <h3>Total Bookings</h3>
+          <p id="totalBookings">0</p>
+        </div>
+      </div>
+      <h2>Recent Bookings (via WhatsApp)</h2>
+      <div id="bookingList" class="booking-list">
+        <p>No bookings yet.</p>
+      </div>
+      <button class="btn-primary" onclick="logout()">Back to Login</button>
+    </div>
+  </section>
+
+  <!-- CAREER DETAIL MODAL -->
+  <div id="careerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <div class="modal-header" id="modalHeader">
+        <h1 id="modalTitle">Career Details</h1>
+      </div>
+      <div class="modal-body">
+        <h2 id="careerName"></h2>
+        <p id="careerDesc"></p>
+        <div class="info-grid">
+          <div class="info-box">
+            <h3>Entrance Exam</h3>
+            <p id="examInfo"></p>
+          </div>
+          <div class="info-box salary-box">
+            <h3>Average Salary</h3>
+            <p id="salaryInfo"></p>
+          </div>
+          <div class="info-box">
+            <h3>Future Scope</h3>
+            <p id="futureInfo"></p>
+          </div>
+        </div>
+        <div class="list-box">
+          <h3>Top Colleges</h3>
+          <ul id="collegesList"></ul>
+        </div>
+        <div class="list-box">
+          <h3>Key Skills Required</h3>
+          <ul id="skillsList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING MODAL (WhatsApp) -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h2>Book Free Career Guidance Session</h2>
+      <form onsubmit="bookViaWhatsApp(event)">
+        <input type="text" id="bookName" placeholder="Your Full Name" required>
+        <input type="tel" id="bookPhone" placeholder="Your Phone Number" required>
+        <input type="email" id="bookEmail" placeholder="Email (optional)">
+        <input type="date" id="bookDate" required>
+        <select id="bookTime" required>
+          <option value="">Select Preferred Time</option>
+          <option>10:00 AM - 12:00 PM</option>
+          <option>02:00 PM - 04:00 PM</option>
+          <option>05:00 PM - 07:00 PM</option>
+        </select>
+        <textarea rows="3" id="bookMessage" placeholder="Any specific career doubt? (optional)"></textarea>
+        <button type="submit" class="btn-whatsapp">
+          <i class="fab fa-whatsapp"></i> Book via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <h2>Opening WhatsApp...</h2>
+      <p>Your message is ready! Just send it to confirm your booking.</p>
+      <button class="btn-primary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
